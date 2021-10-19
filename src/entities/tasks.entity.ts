@@ -3,7 +3,7 @@ import { User } from './user.entity';
 @Entity('tasks')
 export class Tasks {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ length: 60 })
   title: string;

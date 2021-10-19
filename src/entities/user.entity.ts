@@ -1,10 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Generated,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Tasks } from './tasks.entity';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ length: 60 })
   name: string;
@@ -15,6 +21,8 @@ export class User {
   @Column({ name: 'created_at' })
   createdAt: Date;
 
-  @OneToMany(() => Tasks, (tasks) => tasks.user)
+  @OneToMany(() => Tasks, (tasks) => tasks.user, {
+    nullable: true,
+  })
   tasks: Tasks[];
 }

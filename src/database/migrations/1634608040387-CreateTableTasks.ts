@@ -14,8 +14,9 @@ export class CreateTableTasks1634608040387 implements MigrationInterface {
           {
             name: 'id',
             isPrimary: true,
-            type: 'int',
+            type: 'uuid',
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'title',
@@ -32,7 +33,7 @@ export class CreateTableTasks1634608040387 implements MigrationInterface {
           },
           {
             name: 'user_id',
-            type: 'int',
+            type: 'uuid',
           },
         ],
       }),

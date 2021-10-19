@@ -14,8 +14,9 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
           {
             name: 'id',
             isPrimary: true,
-            type: 'int',
+            type: 'uuid',
             generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'created_at',
@@ -24,11 +25,11 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
           },
           {
             name: 'task_id',
-            type: 'int',
+            type: 'uuid',
           },
           {
             name: 'status_id',
-            type: 'int',
+            type: 'uuid',
           },
         ],
       }),
