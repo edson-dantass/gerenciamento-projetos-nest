@@ -8,7 +8,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
   @Get()
-  async index(@Req() req: Request): Promise<User[]> {
+  async index() {
     return await this.userService.findAll();
   }
   @Post()

@@ -15,9 +15,6 @@ export class Status {
   @Column({ length: 30 })
   name: string;
 
-  @ManyToMany(() => Tasks, (tasks) => tasks.status)
-  tasks: Tasks[];
-
   @OneToMany(
     () => TasksStatusStatus,
     (tasksStatusStatus) => tasksStatusStatus.statusId,

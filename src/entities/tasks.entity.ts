@@ -27,10 +27,6 @@ export class Tasks {
   @ManyToOne(() => User, (user) => user.tasks)
   user: User;
 
-  @ManyToMany(() => Status, (status) => status.tasks)
-  @JoinTable()
-  status: Status[];
-
   @OneToMany(
     () => TasksStatusStatus,
     (taskStatusStatus) => taskStatusStatus.tasksId,
