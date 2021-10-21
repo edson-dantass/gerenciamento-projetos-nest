@@ -32,7 +32,7 @@ export class CreateTableTasks1634608040387 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'user_id',
+            name: 'userId',
             type: 'uuid',
           },
         ],
@@ -41,7 +41,7 @@ export class CreateTableTasks1634608040387 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'tasks',
       new TableForeignKey({
-        columnNames: ['user_id'],
+        columnNames: ['userId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
         onDelete: 'CASCADE',
@@ -50,11 +50,6 @@ export class CreateTableTasks1634608040387 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('tasks');
-    const foreignKey = table.foreignKeys.find(
-      (fk) => fk.columnNames.indexOf('user_id') !== -1,
-    );
-    await queryRunner.dropForeignKey('tasks', foreignKey);
     await queryRunner.dropTable('tasks');
   }
 }

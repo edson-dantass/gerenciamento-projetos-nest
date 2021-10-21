@@ -9,7 +9,7 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tasks_status',
+        name: 'tasks_status_status',
         columns: [
           {
             name: 'id',
@@ -24,25 +24,25 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'task_id',
+            name: 'tasksId',
             type: 'uuid',
           },
           {
-            name: 'status_id',
+            name: 'statusId',
             type: 'uuid',
           },
         ],
       }),
     );
-    await queryRunner.createForeignKeys('tasks_status', [
+    await queryRunner.createForeignKeys('tasks_status_status', [
       new TableForeignKey({
-        columnNames: ['task_id'],
+        columnNames: ['tasksId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tasks',
         onDelete: 'CASCADE',
       }),
       new TableForeignKey({
-        columnNames: ['status_id'],
+        columnNames: ['statusId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'status',
         onDelete: 'CASCADE',
@@ -51,6 +51,6 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('tasks_status');
+    await queryRunner.dropTable('tasks_status_status');
   }
 }
