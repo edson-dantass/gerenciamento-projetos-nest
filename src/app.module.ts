@@ -30,7 +30,8 @@ import { SendGridModule } from '@anchan828/nest-sendgrid';
       },
       extra: {
         ssl: {
-          rejectUnauthorized: true,
+          require: true,
+          rejectUnauthorized: false,
         },
       },
     }),
