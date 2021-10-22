@@ -1,12 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Tasks } from './tasks.entity';
-import { TasksStatusStatus } from './tasksStatusStatus.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('status')
 export class Status {
@@ -14,10 +6,4 @@ export class Status {
   id: string;
   @Column({ length: 30 })
   name: string;
-
-  @OneToMany(
-    () => TasksStatusStatus,
-    (tasksStatusStatus) => tasksStatusStatus.statusId,
-  )
-  tasksStatusStatus: TasksStatusStatus[];
 }

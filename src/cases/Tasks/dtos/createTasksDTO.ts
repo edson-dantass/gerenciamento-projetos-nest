@@ -5,5 +5,5 @@ export interface CreateTaskDTO {
   title: string;
   description: string;
   user: User;
-  statusId: Status;
+  status: Status;
 }

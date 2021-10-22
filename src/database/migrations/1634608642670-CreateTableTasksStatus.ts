@@ -24,11 +24,11 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
             default: 'now()',
           },
           {
-            name: 'tasksIdId',
+            name: 'tasksId',
             type: 'uuid',
           },
           {
-            name: 'statusIdId',
+            name: 'statusId',
             type: 'uuid',
           },
         ],
@@ -36,13 +36,15 @@ export class CreateTableTasksStatus1634608642670 implements MigrationInterface {
     );
     await queryRunner.createForeignKeys('tasks_status_status', [
       new TableForeignKey({
-        columnNames: ['tasksIdId'],
+        name: 'tasks',
+        columnNames: ['tasksId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tasks',
         onDelete: 'CASCADE',
       }),
       new TableForeignKey({
-        columnNames: ['statusIdIdstatusIdId'],
+        name: 'status',
+        columnNames: ['statusId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'status',
         onDelete: 'CASCADE',

@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { CreateTasksStatusStatusDTO } from './dtos/createTasksStatusStatusDTO';
 import { TasksStatusStatusService } from './tasksStatusStatus.service';
 
-@Controller('tasksStatusStatus')
+@Controller('toggleStatus')
 export class TasksStatusStatusController {
   constructor(private tasksStatusStatusService: TasksStatusStatusService) {}
 

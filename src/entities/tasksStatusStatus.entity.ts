@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Status } from './status.entity';
 import { Tasks } from './tasks.entity';
 
@@ -16,9 +10,9 @@ export class TasksStatusStatus {
   @Column({ name: 'created_at' })
   createdAt: Date;
 
-  @ManyToOne(() => Tasks, (task) => task.tasksStatusStatus)
-  tasksId: Tasks;
+  @ManyToOne(() => Tasks)
+  tasks: Tasks;
 
-  @ManyToOne(() => Status, (status) => status.tasksStatusStatus)
-  statusId: Status;
+  @ManyToOne(() => Status)
+  status: Status;
 }

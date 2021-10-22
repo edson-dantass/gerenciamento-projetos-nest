@@ -11,6 +11,9 @@ export class StatusService {
     private statusRepository: Repository<Status>,
   ) {}
 
+  async findAll(): Promise<Status[]> {
+    return await this.statusRepository.find();
+  }
   createStatus(status: CreateStatusDTO): Promise<Status> {
     return this.statusRepository.save(status);
   }

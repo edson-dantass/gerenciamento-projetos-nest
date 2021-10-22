@@ -1,14 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Status } from './status.entity';
-import { TasksStatusStatus } from './tasksStatusStatus.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.entity';
 @Entity('tasks')
 export class Tasks {
@@ -26,10 +16,4 @@ export class Tasks {
 
   @ManyToOne(() => User, (user) => user.tasks)
   user: User;
-
-  @OneToMany(
-    () => TasksStatusStatus,
-    (taskStatusStatus) => taskStatusStatus.tasksId,
-  )
-  tasksStatusStatus: TasksStatusStatus[];
 }

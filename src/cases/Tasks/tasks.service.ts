@@ -24,6 +24,35 @@ export class TasksService {
     private tasksStatusService: TasksStatusStatusService,
   ) {}
 
+  async findAll(): Promise<Tasks[]> {
+    const tasks = await this.tasksRepository.find({
+      relations: ['user'],
+    });
+
+    return tasks;
+  }
+
+  async findOne(id: string) {
+    const task = this.tasksRepository.findOne({
+      where: { id },
+    });
+    if (!task) {
+      return null;
+    }
+
+    const statusTasksList = await this.tasksStatusStatusRepository.find({
+      where: {
+        tasks: task,
+      },
+      order: { createdAt: 'DESC' },
+      relations: ['status'],
+    });
+    if (!statusTasksList) {
+      return null;
+    }
+
+    return statusTasksList[0];
+  }
   async createTask(task: CreateTaskDTO): Promise<Tasks> {
     const taskEntity = new Tasks();
     const user = await this.userRepository.findOne({
@@ -33,7 +62,7 @@ export class TasksService {
     });
     const status = await this.statusRepository.findOne({
       where: {
-        id: task.statusId,
+        id: task.status,
       },
     });
     taskEntity.title = task.title;
@@ -42,8 +71,8 @@ export class TasksService {
     const taskResult = await this.tasksRepository.save(taskEntity);
     if (taskResult) {
       await this.tasksStatusService.createTasksStatusStatus({
-        statusId: status,
-        tasksId: taskResult,
+        status: status,
+        tasks: taskResult,
       });
       return taskResult;
     }
@@ -71,6 +100,7 @@ export class TasksService {
 
   async delete(id: string) {
     const taskEntity = await this.tasksRepository.findOne({ where: { id } });
+    console.log(taskEntity);
 
     if (!taskEntity) {
       return null;

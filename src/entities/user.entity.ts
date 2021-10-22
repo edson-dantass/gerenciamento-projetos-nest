@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  Generated,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Tasks } from './tasks.entity';
 
 @Entity('users')

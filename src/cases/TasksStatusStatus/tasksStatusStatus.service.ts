@@ -20,13 +20,13 @@ export class TasksStatusStatusService {
   async createTasksStatusStatus(tasksStatus: CreateTasksStatusStatusDTO) {
     const tasksEntity = await this.tasksRepository.findOne({
       where: {
-        id: tasksStatus.tasksId.id,
+        id: tasksStatus.tasks,
       },
     });
 
     const statusEntity = await this.statusRepository.findOne({
       where: {
-        id: tasksStatus.statusId.id,
+        id: tasksStatus.status,
       },
     });
 
@@ -34,8 +34,8 @@ export class TasksStatusStatusService {
       return null;
     }
     const tasksStatusStatusEntity = new TasksStatusStatus();
-    tasksStatusStatusEntity.statusId = statusEntity;
-    tasksStatusStatusEntity.tasksId = tasksEntity;
+    tasksStatusStatusEntity.tasks = tasksEntity;
+    tasksStatusStatusEntity.status = statusEntity;
 
     return this.tasksStatusStatusRepository.save(tasksStatusStatusEntity);
   }
