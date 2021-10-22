@@ -1,10 +1,9 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Status } from 'src/entities/status.entity';
 import { Tasks } from 'src/entities/tasks.entity';
 import { TasksStatusStatus } from 'src/entities/tasksStatusStatus.entity';
 import { TasksModule } from '../Tasks/tasks.module';
-import { TasksService } from '../Tasks/tasks.service';
 import { TasksStatusStatusController } from './tasksStatusStatus.controller';
 import { TasksStatusStatusService } from './tasksStatusStatus.service';
 
@@ -13,7 +12,8 @@ import { TasksStatusStatusService } from './tasksStatusStatus.service';
   controllers: [TasksStatusStatusController],
   imports: [
     TypeOrmModule.forFeature([TasksStatusStatus, Status, Tasks]),
-    TasksModule,
+    forwardRef(() => TasksModule),
   ],
+  exports: [TasksStatusStatusService],
 })
 export class TasksStatusStatusModule {}

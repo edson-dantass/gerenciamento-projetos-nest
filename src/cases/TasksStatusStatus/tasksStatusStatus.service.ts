@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Status } from 'src/entities/status.entity';
 import { Tasks } from 'src/entities/tasks.entity';
@@ -17,7 +17,7 @@ export class TasksStatusStatusService {
     private tasksRepository: Repository<Tasks>,
     @InjectRepository(Status)
     private statusRepository: Repository<Status>,
-    @Inject(TasksService)
+    @Inject(forwardRef(() => TasksService))
     private tasksService: TasksService,
     @Inject(SendGridService)
     private readonly sendGrid: SendGridService,

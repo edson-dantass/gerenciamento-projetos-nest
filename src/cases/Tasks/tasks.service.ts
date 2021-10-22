@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Status } from 'src/entities/status.entity';
 import { Tasks } from 'src/entities/tasks.entity';
@@ -19,9 +19,10 @@ export class TasksService {
     @InjectRepository(Status)
     private statusRepository: Repository<Status>,
     @InjectRepository(TasksStatusStatus)
-    private tasksStatusStatusRepository: Repository<TasksStatusStatus>, // @Inject(TasksStatusStatusService)
-  ) // private tasksStatusService: TasksStatusStatusService,
-  {}
+    private tasksStatusStatusRepository: Repository<TasksStatusStatus>,
+    @Inject(forwardRef(() => TasksStatusStatusService))
+    private tasksStatusService: TasksStatusStatusService,
+  ) {}
 
   async findAll(): Promise<Tasks[]> {
     const tasks = await this.tasksRepository.find({
@@ -69,21 +70,21 @@ export class TasksService {
     taskEntity.user = user;
     const taskResult = await this.tasksRepository.save(taskEntity);
     if (taskResult) {
-      // await this.tasksStatusService.createTasksStatusStatus({
-      //   status: status,
-      //   tasks: taskResult,
-      // });
+      await this.tasksStatusService.createTasksStatusStatus({
+        status: status,
+        tasks: taskResult,
+      });
       return taskResult;
     }
   }
 
   async update(task: UpdateTaskDTO): Promise<Tasks> {
     const taskEntity = await this.tasksRepository.findOne({
-      where: { id: task.taskId },
+      where: { id: task.task },
     });
 
     const userEntity = await this.userRepository.findOne({
-      where: { id: task.userId },
+      where: { id: task.user },
     });
 
     if (!taskEntity && !userEntity) {

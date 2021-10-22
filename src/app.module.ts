@@ -35,9 +35,9 @@ import { SendGridModule } from '@anchan828/nest-sendgrid';
         },
       },
     }),
-    UserModule,
     StatusModule,
     TasksModule,
+    UserModule,
     TasksStatusStatusModule,
   ],
 })
