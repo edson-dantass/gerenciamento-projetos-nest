@@ -28,11 +28,11 @@ import { SendGridModule } from '@anchan828/nest-sendgrid';
         entitiesDir: 'src/entities',
         migrationsDir: 'src/database/migrations',
       },
-      // extra: {
-      //   ssl: {
-      //     rejectUnauthorized: true,
-      //   },
-      // },
+      extra: {
+        ssl: {
+          rejectUnauthorized: true,
+        },
+      },
     }),
     UserModule,
     StatusModule,
