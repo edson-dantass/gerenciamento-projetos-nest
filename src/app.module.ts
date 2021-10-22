@@ -6,7 +6,6 @@ import { TasksStatusStatusModule } from './cases/TasksStatusStatus/tasksStatusSt
 import { UserModule } from './cases/User/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { SendGridModule } from '@anchan828/nest-sendgrid';
-import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
