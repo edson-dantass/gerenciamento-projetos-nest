@@ -19,10 +19,9 @@ export class TasksService {
     @InjectRepository(Status)
     private statusRepository: Repository<Status>,
     @InjectRepository(TasksStatusStatus)
-    private tasksStatusStatusRepository: Repository<TasksStatusStatus>,
-    @Inject(TasksStatusStatusService)
-    private tasksStatusService: TasksStatusStatusService,
-  ) {}
+    private tasksStatusStatusRepository: Repository<TasksStatusStatus>, // @Inject(TasksStatusStatusService)
+  ) // private tasksStatusService: TasksStatusStatusService,
+  {}
 
   async findAll(): Promise<Tasks[]> {
     const tasks = await this.tasksRepository.find({
@@ -70,10 +69,10 @@ export class TasksService {
     taskEntity.user = user;
     const taskResult = await this.tasksRepository.save(taskEntity);
     if (taskResult) {
-      await this.tasksStatusService.createTasksStatusStatus({
-        status: status,
-        tasks: taskResult,
-      });
+      // await this.tasksStatusService.createTasksStatusStatus({
+      //   status: status,
+      //   tasks: taskResult,
+      // });
       return taskResult;
     }
   }
@@ -100,8 +99,6 @@ export class TasksService {
 
   async delete(id: string) {
     const taskEntity = await this.tasksRepository.findOne({ where: { id } });
-    console.log(taskEntity);
-
     if (!taskEntity) {
       return null;
     }

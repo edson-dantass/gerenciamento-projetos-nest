@@ -22,7 +22,9 @@
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@anchan828/nest-sendgrid": "^0.5.17",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.0.2",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.2",
