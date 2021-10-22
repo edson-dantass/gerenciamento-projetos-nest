@@ -37,12 +37,10 @@ export class TasksStatusStatusService {
       },
     });
 
-    console.log('eaa');
     const task = await this.tasksService.findOne(tasksEntity.user.id);
     if (!tasksEntity && !statusEntity && !task) {
       return null;
     }
-    console.log('Oi');
 
     const tasksStatusStatusEntity = new TasksStatusStatus();
     tasksStatusStatusEntity.tasks = tasksEntity;
@@ -51,7 +49,6 @@ export class TasksStatusStatusService {
     const tasksStatusResult = await this.tasksStatusStatusRepository.save(
       tasksStatusStatusEntity,
     );
-    console.log(process.env.FROM_EMAIL);
 
     if (tasksStatusResult) {
       await this.sendGrid.send({
